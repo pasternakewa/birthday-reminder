@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import UsersList from "./components/UsersList";
 
 const App = () => {
   return (
@@ -9,7 +10,9 @@ const App = () => {
         alignItems: "center",
         justifyContent: "center"
       }}
-    ></div>
+    >
+      <UsersList />
+    </div>
   );
 };
 
