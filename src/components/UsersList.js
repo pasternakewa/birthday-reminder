@@ -18,7 +18,7 @@ const UsersList = () => {
           <div>{`age: ${
             today.getFullYear() - user.birthDate.getFullYear()
           }`}</div>
-          <button>Add</button>
+          <button>Edit</button>
           <button>Delete</button>
         </li>
       ))}
