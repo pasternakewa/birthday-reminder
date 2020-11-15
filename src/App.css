@@ -19,6 +19,26 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.user-button {
+  background-color: transparent;
+  /* border-radius: 16px; */
+  border: 0px solid #000000;
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: none;
+}
+.user-button:hover {
+  background-color: transparent;
+}
+.user-button:active {
+  position: relative;
+  top: 1px;
 }
