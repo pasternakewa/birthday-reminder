@@ -14,7 +14,7 @@ const UsersList = () => {
       <div
         style={{
           border: "1px solid darkgrey",
-          padding: "12px",
+          padding: "4px",
           borderRadius: "8px",
           display: "flex",
           flexDirection: "column"
@@ -59,7 +59,11 @@ const UsersList = () => {
           </div>
         ))}
       </div>
-      <div></div>
+      <div style={{ alignContent: "flex-start" }}>
+        <button className="user-button" style={{ border: "1px solid black" }}>
+          +New
+        </button>
+      </div>
     </div>
   );
 };
