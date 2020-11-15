@@ -29,14 +29,14 @@ const PeopleList = () => {
               <img
                 style={{ height: "32px", borderRadius: "16px" }}
                 src="https://www.kindpng.com/picc/m/79-793180_edit-round-icon-png-png-download-round-edit.png"
-                alt="sa"
+                alt="edit"
               ></img>
             </button>
             <button className="person-button">
               <img
                 style={{ height: "28px", borderRadius: "14px" }}
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMdX3UpUCzG50K3uTFEIb13KZVkmsMESwM3Jf5wZ8-ksXIJ6PuuH6ksWKh3KzCk3t1nB1y0v4KcAlUISdkVpGqwJBx0sgpdviai-hylbI&usqp=CAU&ec=45725302"
-                alt="sa"
+                alt="delete"
               ></img>
             </button>
           </div>
