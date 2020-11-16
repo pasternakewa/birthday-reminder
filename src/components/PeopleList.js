@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Input from "./Input";
 
 const people = [
   { id: 1, name: "Leo", lastName: "DiCaprio", birthDate: "1974-11-11" },
@@ -8,9 +9,18 @@ const people = [
 
 const PeopleList = () => {
   const [peopleState, setPeople] = useState([...people]);
+  const [formState, setFormState] = useState({
+    name: "",
+    lastName: "",
+    birthDate: ""
+  });
 
   const handleDeletePerson = (id) => {
     setPeople(peopleState.filter((person) => person.id !== id));
+  };
+
+  const handleFormStateChange = (key) => (e) => {
+    setFormState({ ...formState, [key]: e.target.value });
   };
 
   return (
@@ -52,6 +62,31 @@ const PeopleList = () => {
       <div style={{ marginTop: 6 }}>
         <button className="person-button" style={{ border: "1px solid black" }}>
           +New
+        </button>
+      </div>
+      <div>
+        <Input
+          name="Imię"
+          value={formState.name}
+          handleChange={handleFormStateChange("name")}
+        />
+
+        <Input
+          name="Nazwisko"
+          value={formState.lastName}
+          handleChange={handleFormStateChange("lastName")}
+        />
+
+        <Input
+          name="Data urodzenia"
+          value={formState.birthDate}
+          handleChange={handleFormStateChange("birthDate")}
+        />
+        <button
+          className="person-button"
+          style={{ border: "1px solid black", marginTop: 6 }}
+        >
+          Dodaj
         </button>
       </div>
     </div>
