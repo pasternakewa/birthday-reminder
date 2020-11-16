@@ -9,6 +9,7 @@ const people = [
 
 const PeopleList = () => {
   const [peopleState, setPeople] = useState([...people]);
+  const [isFormShown, setIsFormShown] = useState(false);
   const [formState, setFormState] = useState({
     name: "",
     lastName: "",
@@ -60,11 +61,15 @@ const PeopleList = () => {
         ))}
       </div>
       <div style={{ marginTop: 6 }}>
-        <button className="person-button" style={{ border: "1px solid black" }}>
+        <button
+          className="person-button"
+          style={{ border: "1px solid black" }}
+          onClick={() => setIsFormShown(!isFormShown)}
+        >
           +New
         </button>
       </div>
-      <div>
+      {isFormShown && <div>
         <Input
           name="Imię"
           value={formState.name}
@@ -88,7 +93,7 @@ const PeopleList = () => {
         >
           Dodaj
         </button>
-      </div>
+      </div>}
     </div>
   );
 };
