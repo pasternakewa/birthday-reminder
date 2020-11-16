@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 
 const people = [
-  { name: "Leo", lastName: "DiCaprio", birthDate: "1974-11-11" },
-  { name: "Demi", lastName: "Moore", birthDate: "1962-11-11" },
-  { name: "Calista", lastName: "Flockhart", birthDate: "1964-11-11" }
+  { id: 1, name: "Leo", lastName: "DiCaprio", birthDate: "1974-11-11" },
+  { id: 2, name: "Demi", lastName: "Moore", birthDate: "1962-11-11" },
+  { id: 3, name: "Calista", lastName: "Flockhart", birthDate: "1964-11-11" }
 ];
 
 const PeopleList = () => {
   const [peopleState, setPeople] = useState([...people]);
 
+  const handleDeletePerson = (id) => {
+    setPeople(peopleState.filter((person) => person.id !== id));
+  };
+
   return (
     <div className="page">
       <div className="people-list">
-        {peopleState.map(({ name, lastName, birthDate }) => (
-          <div className="person" key={name}>
+        {peopleState.map(({ id, name, lastName, birthDate }) => (
+          <div className="person" key={id}>
             <img
               style={{ height: "50px", borderRadius: "25px", marginRight: 10 }}
               src="https://cdn.onlinewebfonts.com/svg/img_184513.png"
@@ -32,7 +36,10 @@ const PeopleList = () => {
                 alt="edit"
               ></img>
             </button>
-            <button className="person-button">
+            <button
+              className="person-button"
+              onClick={() => handleDeletePerson(id)}
+            >
               <img
                 style={{ height: "28px", borderRadius: "14px" }}
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMdX3UpUCzG50K3uTFEIb13KZVkmsMESwM3Jf5wZ8-ksXIJ6PuuH6ksWKh3KzCk3t1nB1y0v4KcAlUISdkVpGqwJBx0sgpdviai-hylbI&usqp=CAU&ec=45725302"
