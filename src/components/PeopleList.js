@@ -25,7 +25,7 @@ const PeopleList = () => {
   };
 
   const handleAddPerson = () => {
-    setPeople([...peopleState, { id: 4, ...formState }]);
+    setPeople([...peopleState, { id: new Date().getTime(), ...formState }]);
   };
 
   return (
