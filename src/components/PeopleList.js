@@ -24,6 +24,10 @@ const PeopleList = () => {
     setFormState({ ...formState, [key]: e.target.value });
   };
 
+  const handleAddPerson = () => {
+    setPeople([...peopleState, { id: 4, ...formState }]);
+  };
+
   return (
     <div className="page">
       <div className="people-list">
@@ -69,31 +73,35 @@ const PeopleList = () => {
           +New
         </button>
       </div>
-      {isFormShown && <div>
-        <Input
-          name="Imię"
-          value={formState.name}
-          handleChange={handleFormStateChange("name")}
-        />
+      {isFormShown && (
+        <div>
+          <Input
+            name="Imię"
+            value={formState.name}
+            handleChange={handleFormStateChange("name")}
+          />
 
-        <Input
-          name="Nazwisko"
-          value={formState.lastName}
-          handleChange={handleFormStateChange("lastName")}
-        />
+          <Input
+            name="Nazwisko"
+            value={formState.lastName}
+            handleChange={handleFormStateChange("lastName")}
+          />
 
-        <Input
-          name="Data urodzenia"
-          value={formState.birthDate}
-          handleChange={handleFormStateChange("birthDate")}
-        />
-        <button
-          className="person-button"
-          style={{ border: "1px solid black", marginTop: 6 }}
-        >
-          Dodaj
-        </button>
-      </div>}
+          <Input
+            name="Data urodzenia"
+            value={formState.birthDate}
+            handleChange={handleFormStateChange("birthDate")}
+          />
+          <button
+            type="submit"
+            className="person-button"
+            style={{ border: "1px solid black", marginTop: 6 }}
+            onClick={handleAddPerson}
+          >
+            Dodaj
+          </button>
+        </div>
+      )}
     </div>
   );
 };
