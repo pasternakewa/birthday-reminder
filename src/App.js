@@ -4,7 +4,7 @@ import PeopleList from "./components/PeopleList";
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
       <PeopleList />
     </div>
   );

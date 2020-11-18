@@ -1,18 +1,25 @@
 .App {
-  text-align: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8d91c7;
 }
 
-.page {
+.people-list-container {
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  -webkit-box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.41);
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.41);
+  border-radius: 8px;
+  border: 1px solid #6e75a8;
+  padding: 16px;
 }
 
 .people-list {
-  border: 1px solid darkgrey;
-  padding: 4px;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
 }
@@ -20,9 +27,23 @@
 .person {
   display: flex;
   flex-direction: row;
-  padding: 4px;
-  margin: 4px;
-  border: 1px solid lightgrey;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #6e75a8;
+}
+
+.person-image {
+  flex-grow: 1;
+}
+
+.person-data {
+  flex-direction: column;
+  margin-top: 6px;
+  flex-grow: 3;
+}
+
+.person-buttons {
+  flex-grow: 1;
 }
 
 .person-button {
@@ -41,8 +62,41 @@
   top: 1px;
 }
 
+.new-person-button {
+  font-weight: bolder;
+  background-color: #6e75a8;
+  border: 0px solid #6e75a8;
+  color: #fff;
+  text-shadow: 4px 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  font-size: 15px;
+  width: 100px;
+  height: 32px;
+  border-radius: 18px;
+}
+
+.new-person-button:hover {
+  background-color: #8d91c7;
+}
+
+.new-person-button:active {
+  position: relative;
+  top: 1px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 16px;
+  justify-content: flex-start;
+}
+
 .input {
   display: flex;
   flex-direction: column;
+  width: 300px;
+  height: 40px;
   font-size: 14px;
+  margin-bottom: 8px;
 }
