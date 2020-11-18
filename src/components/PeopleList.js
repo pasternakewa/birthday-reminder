@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "./Button";
 import Input from "./Input";
 
 const people = [
@@ -70,42 +71,30 @@ const PeopleList = () => {
           </div>
         ))}
       </div>
-      <div style={{ marginTop: 6 }}>
-        <button
-          className="new-person-button"
-          onClick={() => setIsFormShown(!isFormShown)}
-        >
-          +NOWY
-        </button>
-      </div>
+      <Button
+        text={isFormShown ? "▲" : "▼"}
+        handleChange={() => setIsFormShown(!isFormShown)}
+      />
       {isFormShown && (
-        <div>
-          <div className="form">
-            <Input
-              name="Imię"
-              value={formState.name}
-              handleChange={handleFormStateChange("name")}
-            />
+        <div className="form">
+          <Input
+            name="Imię"
+            value={formState.name}
+            handleChange={handleFormStateChange("name")}
+          />
 
-            <Input
-              name="Nazwisko"
-              value={formState.lastName}
-              handleChange={handleFormStateChange("lastName")}
-            />
+          <Input
+            name="Nazwisko"
+            value={formState.lastName}
+            handleChange={handleFormStateChange("lastName")}
+          />
 
-            <Input
-              name="Data urodzenia"
-              value={formState.birthDate}
-              handleChange={handleFormStateChange("birthDate")}
-            />
-          </div>
-          <button
-            type="submit"
-            className="new-person-button"
-            onClick={handleAddPerson}
-          >
-            DODAJ
-          </button>
+          <Input
+            name="Data urodzenia"
+            value={formState.birthDate}
+            handleChange={handleFormStateChange("birthDate")}
+          />
+          <Button type="submit" text="+" handleChange={handleAddPerson} />
         </div>
       )}
     </div>
