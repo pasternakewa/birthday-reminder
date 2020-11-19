@@ -35,24 +35,50 @@
 }
 
 .person-image {
+  display: flex;
   flex-grow: 1;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
 }
 
 .person-data {
+  display: flex;
+  flex: 3;
   flex-direction: column;
-  margin-top: 6px;
   flex-grow: 3;
 }
 
+i.fas {
+  font-size: 24px;
+}
+
+i.fas.fa-user {
+  font-size: 48px;
+}
+
+i.fas.fa-angle-double-down,
+i.fas.fa-angle-double-up,
+i.fas.fa-angle-double-right {
+  font-size: 36px;
+}
+
 .person-buttons {
+  display: flex;
+  flex: 1;
   flex-grow: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .person-button {
+  display: flex;
+  flex-direction: column;
   background-color: transparent;
   border: 0px solid #000000;
   cursor: pointer;
-  font-size: 16px;
+  color: black;
 }
 
 .person-button:hover {
@@ -76,10 +102,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-i.fas {
-  font-size: 36px;
 }
 
 .new-person-button:hover {

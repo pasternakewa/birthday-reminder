@@ -35,15 +35,7 @@ const PeopleList = () => {
         {peopleState.map(({ id, name, lastName, birthDate }) => (
           <div className="person" key={id}>
             <div className="person-image">
-              <img
-                style={{
-                  height: "50px",
-                  borderRadius: "25px",
-                  marginRight: 10
-                }}
-                src="https://cdn.onlinewebfonts.com/svg/img_184513.png"
-                alt="person"
-              ></img>
+              {<i className="fas fa-user fa-7x"></i>}
             </div>
             <div className="person-data">
               <div>{`${name} ${lastName}`}</div>
@@ -51,21 +43,13 @@ const PeopleList = () => {
             </div>
             <div className="person-buttons">
               <button className="person-button">
-                <img
-                  style={{ height: "32px", borderRadius: "16px" }}
-                  src="https://www.kindpng.com/picc/m/79-793180_edit-round-icon-png-png-download-round-edit.png"
-                  alt="edit"
-                ></img>
+                {<i className="fas fa-pencil fa-xs"></i>}
               </button>
               <button
                 className="person-button"
                 onClick={() => handleDeletePerson(id)}
               >
-                <img
-                  style={{ height: "28px", borderRadius: "14px" }}
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMdX3UpUCzG50K3uTFEIb13KZVkmsMESwM3Jf5wZ8-ksXIJ6PuuH6ksWKh3KzCk3t1nB1y0v4KcAlUISdkVpGqwJBx0sgpdviai-hylbI&usqp=CAU&ec=45725302"
-                  alt="delete"
-                ></img>
+                {<i className="fas fa-trash"></i>}
               </button>
             </div>
           </div>
