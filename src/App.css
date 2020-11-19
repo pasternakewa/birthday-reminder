@@ -31,7 +31,7 @@
   flex-direction: row;
   padding: 8px;
   margin-bottom: 8px;
-  border: 1px solid #6e75a8;
+  border: 1px solid #8d91c7;
 }
 
 .person-image {
@@ -43,22 +43,24 @@
   margin-right: 4px;
 }
 
-.person-data {
+.person-data,
+label {
   display: flex;
   flex: 5;
   flex-direction: column;
   flex-grow: 5;
-  color: #3e1929;
+  color: #845a6d;
   font-family: Calibri, "Gill Sans", "Gill Sans MT", sans-serif;
 }
 
 i.fas {
   font-size: 24px;
-  color: #3e1929;
+  color: #6e75a8;
 }
 
 i.fas.fa-user {
   font-size: 48px;
+  color: #845a6d;
 }
 
 i.fas.fa-angle-double-down,

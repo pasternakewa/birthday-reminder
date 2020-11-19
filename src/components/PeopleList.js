@@ -38,10 +38,8 @@ const PeopleList = () => {
               {<i className="fas fa-user fa-7x"></i>}
             </div>
             <div className="person-data">
-              <div>{`${name} ${lastName}`}</div>
-              <div
-                style={{ fontSize: 14, color: "rgb(52%, 35%, 43%)" }}
-              >{`Birthday: ${birthDate}`}</div>
+              <div style={{ fontWeight: "bold" }}>{`${name} ${lastName}`}</div>
+              <div style={{ fontSize: 14 }}>{`Birthday: ${birthDate}`}</div>
             </div>
             <div className="person-buttons">
               <button className="person-button">
