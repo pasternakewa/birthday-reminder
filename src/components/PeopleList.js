@@ -39,7 +39,9 @@ const PeopleList = () => {
             </div>
             <div className="person-data">
               <div>{`${name} ${lastName}`}</div>
-              <div>{`Birthday: ${birthDate}`}</div>
+              <div
+                style={{ fontSize: 14, color: "rgb(52%, 35%, 43%)" }}
+              >{`Birthday: ${birthDate}`}</div>
             </div>
             <div className="person-buttons">
               <button className="person-button">
