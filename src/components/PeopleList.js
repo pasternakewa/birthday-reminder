@@ -72,7 +72,13 @@ const PeopleList = () => {
         ))}
       </div>
       <Button
-        text={isFormShown ? "▲" : "▼"}
+        icon={
+          isFormShown ? (
+            <i className="fas fa-angle-double-up fa-7x"></i>
+          ) : (
+            <i className="fas fa-angle-double-down"></i>
+          )
+        }
         handleChange={() => setIsFormShown(!isFormShown)}
       />
       {isFormShown && (
@@ -94,7 +100,11 @@ const PeopleList = () => {
             value={formState.birthDate}
             handleChange={handleFormStateChange("birthDate")}
           />
-          <Button type="submit" text="+" handleChange={handleAddPerson} />
+          <Button
+            type="submit"
+            icon={<i className="fas fa-angle-double-right"></i>}
+            handleChange={handleAddPerson}
+          />
         </div>
       )}
     </div>

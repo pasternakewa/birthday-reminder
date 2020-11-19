@@ -1,9 +1,9 @@
 import React from "react";
 
-const Button = ({ text, handleChange }) => {
+const Button = ({ icon, handleChange }) => {
   return (
     <button className="new-person-button" onClick={handleChange}>
-      {text}
+      <p>{icon}</p>
     </button>
   );
 };
