@@ -26,7 +26,13 @@ const PeopleList = () => {
   };
 
   const handleAddPerson = () => {
+    event.preventDefault();
     setPeople([...peopleState, { id: new Date().getTime(), ...formState }]);
+    setFormState({
+      name: "",
+      lastName: "",
+      birthDate: ""
+    });
   };
 
   return (
@@ -66,7 +72,7 @@ const PeopleList = () => {
         handleChange={() => setIsFormShown(!isFormShown)}
       />
       {isFormShown && (
-        <div className="form">
+        <form className="form" onSubmit={handleAddPerson}>
           <Input
             name="Imię"
             value={formState.name}
@@ -87,9 +93,8 @@ const PeopleList = () => {
           <Button
             type="submit"
             icon={<i className="fas fa-angle-double-right"></i>}
-            handleChange={handleAddPerson}
           />
-        </div>
+        </form>
       )}
     </div>
   );
