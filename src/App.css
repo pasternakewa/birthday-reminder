@@ -32,6 +32,7 @@
   padding: 8px;
   margin-bottom: 8px;
   border: 1px solid #8d91c7;
+  width: 300px;
 }
 
 .person-image {
@@ -51,6 +52,10 @@ label {
   flex-grow: 5;
   color: #845a6d;
   font-family: Calibri, "Gill Sans", "Gill Sans MT", sans-serif;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  white-space: initial;
 }
 
 i.fas {
