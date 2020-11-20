@@ -35,20 +35,28 @@ const PeopleList = () => {
     });
   };
 
+  const handleEditPerson = (id, name, lastName, birthDate) => {
+    setIsFormShown(true);
+    setFormState({ name, lastName, birthDate });
+  };
+
   return (
     <div className="people-list-container">
       <div className="people-list">
         {peopleState.map(({ id, name, lastName, birthDate }) => (
           <div className="person" key={id}>
             <div className="person-image">
-              {<i className="fas fa-user fa-7x"></i>}
+              <i className="fas fa-user fa-7x"></i>
             </div>
             <div className="person-data">
               <div style={{ fontWeight: "bold" }}>{`${name} ${lastName}`}</div>
               <div style={{ fontSize: 14 }}>{`Birthday: ${birthDate}`}</div>
             </div>
             <div className="person-buttons">
-              <i className="fas fa-pencil person-button"></i>
+              <i
+                onClick={() => handleEditPerson(id, name, lastName, birthDate)}
+                className="fas fa-pencil person-button"
+              ></i>
               <i
                 onClick={() => handleDeletePerson(id)}
                 className="fas fa-trash person-button"
