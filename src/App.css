@@ -109,8 +109,8 @@ i.fas.fa-angle-double-right {
   color: #fff;
   cursor: pointer;
   width: 100px;
-  height: 40px;
-  border-radius: 20px;
+  height: 32px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,11 +134,21 @@ i.fas.fa-angle-double-right {
   align-items: flex-end;
 }
 
-.input {
+.input-container {
   display: flex;
   flex-direction: column;
   width: 300px;
   height: 40px;
   font-size: 14px;
   margin-bottom: 14px;
+}
+
+input {
+  background-color: #845a6d;
+  border: 0px solid #6e75a8;
+  color: #fff;
+  width: 296px;
+  line-height: 24px;
+  border-radius: 12px;
+  padding-left: 4px;
 }

@@ -48,15 +48,11 @@ const PeopleList = () => {
               <div style={{ fontSize: 14 }}>{`Birthday: ${birthDate}`}</div>
             </div>
             <div className="person-buttons">
-              <button className="person-button">
-                {<i className="fas fa-pencil fa-xs"></i>}
-              </button>
-              <button
-                className="person-button"
+              <i className="fas fa-pencil person-button"></i>
+              <i
                 onClick={() => handleDeletePerson(id)}
-              >
-                {<i className="fas fa-trash"></i>}
-              </button>
+                className="fas fa-trash person-button"
+              ></i>
             </div>
           </div>
         ))}
