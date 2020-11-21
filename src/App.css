@@ -5,19 +5,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #8d91c7;
+  background: rgb(130, 186, 247);
+  background: linear-gradient(
+    90deg,
+    rgba(130, 186, 247, 1) 0%,
+    rgba(155, 163, 238, 1) 45%,
+    rgba(192, 131, 234, 1) 100%
+  );
 }
 
 .people-list-container {
-  background-color: #fff;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   -webkit-box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.41);
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.41);
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  border: 1px solid #6e75a8;
   padding: 16px;
 }
 
@@ -32,7 +37,7 @@
   flex-direction: row;
   padding: 8px;
   margin-bottom: 8px;
-  border: 1px solid #8d91c7;
+  border: 1px solid #7d4f87;
   width: 300px;
 }
 
@@ -51,22 +56,23 @@ label {
   flex: 5;
   flex-direction: column;
   flex-grow: 5;
-  color: #845a6d;
+  color: #4b2055;
   font-family: Calibri, "Gill Sans", "Gill Sans MT", sans-serif;
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
   white-space: initial;
+  margin: 2px 0px;
 }
 
 i.fas {
   font-size: 24px;
-  color: #6e75a8;
+  color: #4b2055;
 }
 
 i.fas.fa-user {
   font-size: 48px;
-  color: #845a6d;
+  color: #4b2055;
 }
 
 i.fas.fa-angle-double-down,
@@ -90,7 +96,6 @@ i.fas.fa-angle-double-right {
   background-color: transparent;
   border: 0px solid #000000;
   cursor: pointer;
-  color: black;
   padding: 0px 0px 0px 8px;
 }
 
@@ -104,8 +109,8 @@ i.fas.fa-angle-double-right {
 }
 
 .new-person-button {
-  background-color: #6e75a8;
-  border: 0px solid #6e75a8;
+  background-color: #bd59d7;
+  border: 0px solid #bd59d7;
   color: #fff;
   cursor: pointer;
   width: 100px;
@@ -117,7 +122,7 @@ i.fas.fa-angle-double-right {
 }
 
 .new-person-button:hover {
-  background-color: #8d91c7;
+  background-color: #a64cbd;
 }
 
 .new-person-button:active {
@@ -144,9 +149,13 @@ i.fas.fa-angle-double-right {
 }
 
 input {
-  background-color: #845a6d;
-  border: 0px solid #6e75a8;
-  color: #fff;
+  background-color: #ffffff;
+  border: 1px solid #f5f5f5;
+  /* -webkit-box-shadow: 0px 0px 0px 0px #0b325e,
+    0px 0px 6px -21px rgba(0, 0, 0, 16);
+  box-shadow: 36px 21px 42px #e0e0e0, -21px -21px 90px #ffffff; */
+  box-shadow: 6px 6px 20px #c0bfbf, -10px -10px 48px #ffffff;
+  color: #4b2354;
   width: 296px;
   line-height: 24px;
   border-radius: 12px;

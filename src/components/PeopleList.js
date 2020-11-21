@@ -46,11 +46,13 @@ const PeopleList = () => {
         {peopleState.map(({ id, name, lastName, birthDate }) => (
           <div className="person" key={id}>
             <div className="person-image">
-              <i className="fas fa-user fa-7x"></i>
+              <i className="fas fa-user"></i>
             </div>
             <div className="person-data">
               <div style={{ fontWeight: "bold" }}>{`${name} ${lastName}`}</div>
-              <div style={{ fontSize: 14 }}>{`Birthday: ${birthDate}`}</div>
+              <div
+                style={{ fontSize: 14, color: "#7d4f87" }}
+              >{`Birthday: ${birthDate}`}</div>
             </div>
             <div className="person-buttons">
               <i
@@ -68,7 +70,7 @@ const PeopleList = () => {
       <Button
         icon={
           isFormShown ? (
-            <i className="fas fa-angle-double-up fa-7x"></i>
+            <i className="fas fa-angle-double-up"></i>
           ) : (
             <i className="fas fa-angle-double-down"></i>
           )
@@ -94,10 +96,7 @@ const PeopleList = () => {
             value={formState.birthDate}
             handleChange={handleFormStateChange("birthDate")}
           />
-          <Button
-            type="submit"
-            icon={<i className="fas fa-angle-double-right"></i>}
-          />
+          <Button type="submit" icon="POTWIERDŹ" />
         </form>
       )}
     </div>
