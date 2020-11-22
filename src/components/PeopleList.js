@@ -96,7 +96,13 @@ const PeopleList = () => {
             value={formState.birthDate}
             handleChange={handleFormStateChange("birthDate")}
           />
-          <Button type="submit" icon="POTWIERDŹ" />
+          <button
+            type="submit"
+            className="new-person-button"
+            style={{ fontWeight: "bold", backgroundColor: "#57b847" }}
+          >
+            POTWIERDŹ
+          </button>
         </form>
       )}
     </div>
