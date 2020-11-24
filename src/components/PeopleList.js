@@ -11,6 +11,7 @@ const people = [
 const PeopleList = () => {
   const [peopleState, setPeople] = useState([...people]);
   const [isFormShown, setIsFormShown] = useState(false);
+  const [editId, setEditId] = useState(null);
   const [formState, setFormState] = useState({
     name: "",
     lastName: "",
@@ -25,17 +26,31 @@ const PeopleList = () => {
     setFormState({ ...formState, [key]: e.target.value });
   };
 
-  const handleAddPerson = () => {
-    event.preventDefault();
-    setPeople([...peopleState, { id: new Date().getTime(), ...formState }]);
+  const handleConfirm = () => {
+    if (editId) {
+      const updatedPeopleState = peopleState.reduce(
+        (acc, curr) => [
+          ...acc,
+          curr.id !== editId ? curr : { ...formState, id: editId }
+        ],
+        []
+      );
+      setPeople(updatedPeopleState);
+    } else {
+      event.preventDefault();
+      setPeople([...peopleState, { id: new Date().getTime(), ...formState }]);
+      setEditId(null);
+    }
     setFormState({
       name: "",
       lastName: "",
       birthDate: ""
     });
+    setIsFormShown(false);
   };
 
   const handleEditPerson = (id, name, lastName, birthDate) => {
+    setEditId(id);
     setIsFormShown(true);
     setFormState({ name, lastName, birthDate });
   };
@@ -78,7 +93,7 @@ const PeopleList = () => {
         handleChange={() => setIsFormShown(!isFormShown)}
       />
       {isFormShown && (
-        <form className="form" onSubmit={handleAddPerson}>
+        <form className="form" onSubmit={handleConfirm}>
           <Input
             name="Imię"
             value={formState.name}
