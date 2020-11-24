@@ -14,8 +14,11 @@ const PeopleList = () => {
   const [editId, setEditId] = useState(null);
   const [formState, setFormState] = useState({
     name: "",
+    nameError: "",
     lastName: "",
-    birthDate: ""
+    lastNameError: "",
+    birthDate: "",
+    birthDateError: ""
   });
 
   const handleDeletePerson = (id) => {
@@ -26,27 +29,66 @@ const PeopleList = () => {
     setFormState({ ...formState, [key]: e.target.value });
   };
 
-  const handleConfirm = () => {
-    if (editId) {
-      const updatedPeopleState = peopleState.reduce(
-        (acc, curr) => [
-          ...acc,
-          curr.id !== editId ? curr : { ...formState, id: editId }
-        ],
-        []
-      );
-      setPeople(updatedPeopleState);
-    } else {
-      event.preventDefault();
-      setPeople([...peopleState, { id: new Date().getTime(), ...formState }]);
-      setEditId(null);
+  const validate = () => {
+    let isError = false;
+    const errors = [];
+    const dateRegex = /^(19[5-9][0-9]|20[0-1][0-9])[-/.](0?[1-9]|1[0-2])[-/.](0?[1-9]|[12][0-9]|3[01])$/gim;
+
+    if (formState.name.length < 3) {
+      isError = true;
+      errors.nameError = "Imię za krótkie";
     }
-    setFormState({
-      name: "",
-      lastName: "",
-      birthDate: ""
-    });
-    setIsFormShown(false);
+
+    if (formState.name.length > 18) {
+      isError = true;
+      errors.nameError = "Imię za długie. Max 18 znaków.";
+    }
+
+    if (formState.lastName.length < 3) {
+      isError = true;
+      errors.lastNameError = "Nazwisko za krótkie.";
+    }
+
+    if (formState.lastName.length > 18) {
+      isError = true;
+      errors.lastNameError = "Nazwisko za długie. Max 18 znaków.";
+    }
+
+    if (!dateRegex.test(formState.birthDate)) {
+      isError = true;
+      errors.birthDateError = "Niepoprawy format daty";
+    }
+
+    if (isError) {
+      setFormState({ ...formState, ...errors });
+    }
+    return isError;
+  };
+
+  const handleConfirm = () => {
+    event.preventDefault();
+    const err = validate();
+    if (!err) {
+      if (editId) {
+        const updatedPeopleState = peopleState.reduce(
+          (acc, curr) => [
+            ...acc,
+            curr.id !== editId ? curr : { ...formState, id: editId }
+          ],
+          []
+        );
+        setPeople(updatedPeopleState);
+      } else {
+        setPeople([...peopleState, { id: new Date().getTime(), ...formState }]);
+        setEditId(null);
+      }
+      setFormState({
+        name: "",
+        lastName: "",
+        birthDate: ""
+      });
+      setIsFormShown(false);
+    }
   };
 
   const handleEditPerson = (id, name, lastName, birthDate) => {
@@ -98,18 +140,22 @@ const PeopleList = () => {
             name="Imię"
             value={formState.name}
             handleChange={handleFormStateChange("name")}
+            errorText={formState.nameError}
           />
 
           <Input
             name="Nazwisko"
             value={formState.lastName}
             handleChange={handleFormStateChange("lastName")}
+            errorText={formState.lastNameError}
           />
 
           <Input
             name="Data urodzenia"
             value={formState.birthDate}
             handleChange={handleFormStateChange("birthDate")}
+            errorText={formState.birthDateError}
+            placeholder="YYYY-MM-DD"
           />
           <button
             type="submit"

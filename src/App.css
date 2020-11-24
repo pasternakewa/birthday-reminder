@@ -161,3 +161,10 @@ input {
   border-radius: 12px;
   padding-left: 4px;
 }
+
+.error {
+  font-size: 12px;
+  color: red;
+  align-self: center;
+  font-weight: bold;
+}
