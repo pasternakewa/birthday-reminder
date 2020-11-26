@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
-import validate from "../validate";
+import validate from "../validation";
 
 const people = [
   { id: 1, name: "Leo", lastName: "DiCaprio", birthDate: "1974-11-11" },
