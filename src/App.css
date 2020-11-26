@@ -118,6 +118,7 @@ i.fas.fa-angle-double-up {
   align-items: center;
   justify-content: center;
   margin-top: 6px;
+  outline: none;
 }
 
 .new-person-button:hover {
