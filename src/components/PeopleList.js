@@ -68,12 +68,12 @@ const PeopleList = () => {
         {peopleState.map(({ id, name, lastName, birthDate }) => (
           <div className="person" key={id}>
             <div className="person-image">
-              <i className="fas fa-user"></i>
+              <i className="fas fa-user" style={{}}></i>
             </div>
             <div className="person-data">
               <div style={{ fontWeight: "bold" }}>{`${name} ${lastName}`}</div>
               <div
-                style={{ fontSize: 14, color: "#7d4f87" }}
+                style={{ fontSize: 14, color: "gray" }}
               >{`Birthday: ${birthDate}`}</div>
             </div>
             <div className="person-buttons">
@@ -90,7 +90,7 @@ const PeopleList = () => {
         ))}
       </div>
       <Button
-        icon={
+        title={
           isFormShown ? (
             <i className="fas fa-angle-double-up"></i>
           ) : (
@@ -122,13 +122,11 @@ const PeopleList = () => {
             errorText={formState.birthDateError}
             placeholder="YYYY-MM-DD"
           />
-          <button
+          <Button
             type="submit"
-            className="new-person-button"
-            style={{ fontWeight: "bold", backgroundColor: "#57b847" }}
-          >
-            POTWIERDŹ
-          </button>
+            style={{ fontWeight: "bold", backgroundColor: "#42ba96" }}
+            title="Potwierdź"
+          />
         </form>
       )}
     </div>

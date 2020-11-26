@@ -1,9 +1,14 @@
 import React from "react";
 
-const Button = ({ icon, handleChange }) => {
+const Button = ({ title, handleChange, style, type }) => {
   return (
-    <button className="new-person-button" onClick={handleChange}>
-      {icon}
+    <button
+      className="new-person-button"
+      onClick={handleChange}
+      style={style}
+      type={type}
+    >
+      {title}
     </button>
   );
 };

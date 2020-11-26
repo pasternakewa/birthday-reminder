@@ -34,18 +34,13 @@
 .person {
   display: flex;
   flex-direction: row;
-  padding: 8px;
-  margin-bottom: 8px;
-  border: 1px solid #7d4f87;
+  padding: 12px 8px;
+  margin-bottom: 16px;
+  box-shadow: 6px 6px 20px -16px #c0bfbf;
   width: 350px;
 }
 
 .person-image {
-  display: flex;
-  flex-grow: 1;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
   margin-right: 4px;
 }
 
@@ -55,29 +50,30 @@ label {
   flex: 5;
   flex-direction: column;
   flex-grow: 5;
-  color: #4b2055;
+  color: black;
   font-family: Calibri, "Gill Sans", "Gill Sans MT", sans-serif;
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
   white-space: initial;
-  margin: 2px 0px;
+  justify-content: center;
+  margin: 2px 0px 2px 4px;
 }
 
 i.fas {
   font-size: 24px;
-  color: #4b2055;
+  color: black;
 }
 
 i.fas.fa-user {
   font-size: 48px;
-  color: #4b2055;
+  color: black;
 }
 
 i.fas.fa-angle-double-down,
 i.fas.fa-angle-double-up {
   font-size: 28px;
-  color: #fff;
+  color: #807c7c;
 }
 
 .person-buttons {
@@ -107,13 +103,12 @@ i.fas.fa-angle-double-up {
 }
 
 .new-person-button {
-  background-color: #bd59d7;
-  border: 0px solid #bd59d7;
+  background-color: #d3d3d3;
+  border: 0;
   color: #fff;
   cursor: pointer;
-  width: 100px;
-  height: 32px;
-  border-radius: 16px;
+  padding: 8px 16px;
+  border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,7 +117,7 @@ i.fas.fa-angle-double-up {
 }
 
 .new-person-button:hover {
-  background-color: #a64cbd;
+  background-color: #e0e0e0;
 }
 
 .new-person-button:active {
@@ -132,19 +127,18 @@ i.fas.fa-angle-double-up {
 
 .form {
   display: flex;
+  width: 100%;
   flex-direction: column;
   flex-grow: 1;
-  margin: 16px;
-  justify-content: flex-start;
+  margin: 16px 0px;
   align-items: flex-end;
 }
 
 .input-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 350px;
   height: 40px;
-  font-size: 14px;
   margin-bottom: 32px;
   font-size: 12px;
 }
@@ -153,11 +147,10 @@ input {
   background-color: #ffffff;
   border: 1px solid #f5f5f5;
   box-shadow: 6px 6px 20px -9px #c0bfbf, -10px -10px 48px -9px #ffffff;
-  color: #4b2354;
-  width: 346px;
+  color: black;
   line-height: 24px;
-  border-radius: 12px;
-  padding-left: 4px;
+  border-radius: 24px;
+  padding: 8px;
 }
 
 .error {
