@@ -34,34 +34,37 @@ const PeopleList = () => {
     const errors = [];
     const dateRegex = /^(19[5-9][0-9]|20[0-1][0-9])[-/.](0?[1-9]|1[0-2])[-/.](0?[1-9]|[12][0-9]|3[01])$/gim;
 
+    //name validation
     if (formState.name.length < 3) {
       isError = true;
       errors.nameError = "Imię za krótkie";
-    }
-
-    if (formState.name.length > 18) {
+    } else if (formState.name.length > 18) {
       isError = true;
       errors.nameError = "Imię za długie. Max 18 znaków.";
+    } else {
+      isError = false;
+      errors.nameError = "";
     }
 
+    //lastName validation
     if (formState.lastName.length < 3) {
       isError = true;
       errors.lastNameError = "Nazwisko za krótkie.";
-    }
-
-    if (formState.lastName.length > 18) {
+    } else if (formState.lastName.length > 18) {
       isError = true;
       errors.lastNameError = "Nazwisko za długie. Max 18 znaków.";
+    } else {
+      isError = false;
+      errors.lastNameError = "";
     }
 
+    //birthDate validation
     if (!dateRegex.test(formState.birthDate)) {
       isError = true;
       errors.birthDateError = "Niepoprawy format daty";
     }
 
-    if (isError) {
-      setFormState({ ...formState, ...errors });
-    }
+    setFormState({ ...formState, ...errors });
     return isError;
   };
 
