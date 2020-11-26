@@ -4,7 +4,7 @@ import Button from "./Button";
 
 const Form = ({ formState, handleConfirm, handleFormStateChange }) => {
   return (
-    <form className="form" onSubmit={handleConfirm}>
+    <form onSubmit={handleConfirm}>
       <Input
         name="Imię"
         value={formState.name}

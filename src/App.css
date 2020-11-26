@@ -125,7 +125,7 @@ i.fas.fa-angle-double-up {
   top: 1px;
 }
 
-.form {
+form {
   display: flex;
   width: 100%;
   flex-direction: column;
