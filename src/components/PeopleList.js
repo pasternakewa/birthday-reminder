@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "./Button";
-import Input from "./Input";
+import Form from "./Form";
 import validate from "../validation";
 
 const people = [
@@ -22,12 +22,18 @@ const PeopleList = () => {
     birthDateError: ""
   });
 
+  const handleFormStateChange = (key) => (e) => {
+    setFormState({ ...formState, [key]: e.target.value });
+  };
+
   const handleDeletePerson = (id) => {
     setPeople(peopleState.filter((person) => person.id !== id));
   };
 
-  const handleFormStateChange = (key) => (e) => {
-    setFormState({ ...formState, [key]: e.target.value });
+  const handleEditPerson = (id, name, lastName, birthDate) => {
+    setEditId(id);
+    setIsFormShown(true);
+    setFormState({ name, lastName, birthDate });
   };
 
   const handleConfirm = () => {
@@ -54,12 +60,6 @@ const PeopleList = () => {
       });
       setIsFormShown(false);
     }
-  };
-
-  const handleEditPerson = (id, name, lastName, birthDate) => {
-    setEditId(id);
-    setIsFormShown(true);
-    setFormState({ name, lastName, birthDate });
   };
 
   return (
@@ -100,34 +100,11 @@ const PeopleList = () => {
         handleChange={() => setIsFormShown(!isFormShown)}
       />
       {isFormShown && (
-        <form className="form" onSubmit={handleConfirm}>
-          <Input
-            name="Imię"
-            value={formState.name}
-            handleChange={handleFormStateChange("name")}
-            errorText={formState.nameError}
-          />
-
-          <Input
-            name="Nazwisko"
-            value={formState.lastName}
-            handleChange={handleFormStateChange("lastName")}
-            errorText={formState.lastNameError}
-          />
-
-          <Input
-            name="Data urodzenia"
-            value={formState.birthDate}
-            handleChange={handleFormStateChange("birthDate")}
-            errorText={formState.birthDateError}
-            placeholder="YYYY-MM-DD"
-          />
-          <Button
-            type="submit"
-            style={{ fontWeight: "bold", backgroundColor: "#42ba96" }}
-            title="Potwierdź"
-          />
-        </form>
+        <Form
+          formState={formState}
+          handleConfirm={handleConfirm}
+          handleFormStateChange={handleFormStateChange}
+        />
       )}
     </div>
   );
