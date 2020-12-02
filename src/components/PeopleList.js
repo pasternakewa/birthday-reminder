@@ -1,52 +1,111 @@
 import React, { useState } from "react";
+import Button from "./Button";
+import Form from "./Form";
+import validate from "../validation";
 
 const people = [
-  { name: "Leo", lastName: "DiCaprio", birthDate: "1974-11-11" },
-  { name: "Demi", lastName: "Moore", birthDate: "1962-11-11" },
-  { name: "Calista", lastName: "Flockhart", birthDate: "1964-11-11" }
+  { id: 1, name: "Leo", lastName: "DiCaprio", birthDate: "1974-11-11" },
+  { id: 2, name: "Demi", lastName: "Moore", birthDate: "1962-11-11" },
+  { id: 3, name: "Calista", lastName: "Flockhart", birthDate: "1964-11-11" }
 ];
 
 const PeopleList = () => {
   const [peopleState, setPeople] = useState([...people]);
+  const [isFormShown, setIsFormShown] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [formState, setFormState] = useState({
+    name: "",
+    nameError: "",
+    lastName: "",
+    lastNameError: "",
+    birthDate: "",
+    birthDateError: ""
+  });
+
+  const handleFormStateChange = (key) => (e) => {
+    setFormState({ ...formState, [key]: e.target.value });
+  };
+
+  const handleDeletePerson = (id) => {
+    setPeople(peopleState.filter((person) => person.id !== id));
+  };
+
+  const handleEditPerson = (id, name, lastName, birthDate) => {
+    setEditId(id);
+    setIsFormShown(true);
+    setFormState({ name, lastName, birthDate });
+  };
+
+  const handleConfirm = () => {
+    event.preventDefault();
+    const err = validate(formState, setFormState);
+    if (!err) {
+      if (editId) {
+        const updatedPeopleState = peopleState.reduce(
+          (acc, curr) => [
+            ...acc,
+            curr.id !== editId ? curr : { ...formState, id: editId }
+          ],
+          []
+        );
+        setPeople(updatedPeopleState);
+      } else {
+        setPeople([...peopleState, { id: new Date().getTime(), ...formState }]);
+        setEditId(null);
+      }
+      setFormState({
+        name: "",
+        lastName: "",
+        birthDate: ""
+      });
+      setIsFormShown(false);
+    }
+  };
 
   return (
-    <div className="page">
+    <div className="people-list-container">
       <div className="people-list">
-        {peopleState.map(({ name, lastName, birthDate }) => (
-          <div className="person" key={name}>
-            <img
-              style={{ height: "50px", borderRadius: "25px", marginRight: 10 }}
-              src="https://cdn.onlinewebfonts.com/svg/img_184513.png"
-              alt="person"
-            ></img>
-            <div
-              style={{ display: "flex", flexDirection: "column", marginTop: 6 }}
-            >
-              <div>{`${name} ${lastName}`}</div>
-              <div>{`Birthday: ${birthDate}`}</div>
+        {peopleState.map(({ id, name, lastName, birthDate }) => (
+          <div className="person" key={id}>
+            <div className="person-image">
+              <i className="fas fa-user" style={{}}></i>
             </div>
-            <button className="person-button">
-              <img
-                style={{ height: "32px", borderRadius: "16px" }}
-                src="https://www.kindpng.com/picc/m/79-793180_edit-round-icon-png-png-download-round-edit.png"
-                alt="edit"
-              ></img>
-            </button>
-            <button className="person-button">
-              <img
-                style={{ height: "28px", borderRadius: "14px" }}
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMdX3UpUCzG50K3uTFEIb13KZVkmsMESwM3Jf5wZ8-ksXIJ6PuuH6ksWKh3KzCk3t1nB1y0v4KcAlUISdkVpGqwJBx0sgpdviai-hylbI&usqp=CAU&ec=45725302"
-                alt="delete"
-              ></img>
-            </button>
+            <div className="person-data">
+              <div style={{ fontWeight: "bold" }}>{`${name} ${lastName}`}</div>
+              <div
+                style={{ fontSize: 14, color: "gray" }}
+              >{`Birthday: ${birthDate}`}</div>
+            </div>
+            <div className="person-buttons">
+              <i
+                onClick={() => handleEditPerson(id, name, lastName, birthDate)}
+                className="fas fa-pencil person-button"
+              ></i>
+              <i
+                onClick={() => handleDeletePerson(id)}
+                className="fas fa-trash person-button"
+              ></i>
+            </div>
           </div>
         ))}
       </div>
-      <div style={{ marginTop: 6 }}>
-        <button className="person-button" style={{ border: "1px solid black" }}>
-          +New
-        </button>
-      </div>
+      <Button
+        title={
+          isFormShown ? (
+            <i className="fas fa-angle-double-up"></i>
+          ) : (
+            <i className="fas fa-angle-double-down"></i>
+          )
+        }
+        handleChange={() => setIsFormShown(!isFormShown)}
+      />
+      {isFormShown && (
+        <Form
+          formState={formState}
+          handleConfirm={handleConfirm}
+          handleFormStateChange={handleFormStateChange}
+        />
+      )}
     </div>
   );
 };
