@@ -97,7 +97,13 @@ const PeopleList = () => {
             <i className="fas fa-user-plus"></i>
           )
         }
-        handleChange={() => setIsFormShown(!isFormShown)}
+        handleChange={() => {
+          setIsFormShown(!isFormShown);
+          if (isFormShown === false) {
+            setFormState({ name: "", lastName: "", birthDate: "" });
+            setEditId(null);
+          }
+        }}
       />
       {isFormShown && (
         <Form
