@@ -1,7 +1,7 @@
 const validate = (formState, setFormState) => {
   let isError = false;
   const errors = [];
-  const dateRegex = /^(19[5-9][0-9]|20[0-1][0-9])[-/.](0?[1-9]|1[0-2])[-/.](0?[1-9]|[12][0-9]|3[01])$/gim;
+  const dateRegex = /^(19[5-9][0-9]|20[0-2][0-9])[-/.](0?[1-9]|1[0-2])[-/.](0?[1-9]|[12][0-9]|3[01])$/gim;
 
   //name validation
   if (formState.name.length < 3) {
