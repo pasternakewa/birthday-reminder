@@ -94,7 +94,7 @@ const PeopleList = () => {
           isFormShown ? (
             <i className="fas fa-angle-double-up"></i>
           ) : (
-            <i className="fas fa-angle-double-down"></i>
+            <i className="fas fa-user-plus"></i>
           )
         }
         handleChange={() => setIsFormShown(!isFormShown)}

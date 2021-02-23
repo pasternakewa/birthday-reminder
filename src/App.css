@@ -70,7 +70,10 @@ i.fas.fa-user {
   color: black;
 }
 
-i.fas.fa-angle-double-down,
+i.fas.fa-user-plus {
+  color: #807c7c;
+}
+
 i.fas.fa-angle-double-up {
   font-size: 28px;
   color: #807c7c;
