@@ -23,7 +23,7 @@ const PeopleList = () => {
   });
 
   const handleFormStateChange = (key) => (e) => {
-    setFormState({ ...formState, [key]: e.target.value });
+    setFormState({ ...formState, [key]: e.target.value, [`${key}Error`]: "" });
   };
 
   const handleDeletePerson = (id) => {
