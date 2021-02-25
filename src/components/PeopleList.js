@@ -22,6 +22,8 @@ const PeopleList = () => {
     birthDateError: ""
   });
 
+  let today = new Date().toISOString().slice(5, 10);
+
   const handleFormStateChange = (key) => (e) => {
     setFormState({ ...formState, [key]: e.target.value, [`${key}Error`]: "" });
   };
@@ -68,12 +70,16 @@ const PeopleList = () => {
         {peopleState.map(({ id, name, lastName, birthDate }) => (
           <div className="person" key={id}>
             <div className="person-image">
-              <i className="fas fa-user" style={{}}></i>
+              <i className="fas fa-user"></i>
             </div>
             <div className="person-data">
               <div style={{ fontWeight: "bold" }}>{`${name} ${lastName}`}</div>
               <div
-                style={{ fontSize: 14, color: "gray" }}
+                style={
+                  birthDate.slice(5, 10) === today
+                    ? { fontSize: 14, color: "#ba88eb", fontWeight: "bold" }
+                    : { fontSize: 14, color: "gray" }
+                }
               >{`Birthday: ${birthDate}`}</div>
             </div>
             <div className="person-buttons">
