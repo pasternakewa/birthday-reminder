@@ -64,6 +64,13 @@ const PeopleList = () => {
     }
   };
 
+  const clearForm = () => {
+    if (isFormShown === false) {
+      setFormState({ name: "", lastName: "", birthDate: "" });
+      setEditId(null);
+    }
+  };
+
   return (
     <div className="people-list-container">
       <div className="people-list">
@@ -105,10 +112,7 @@ const PeopleList = () => {
         }
         handleChange={() => {
           setIsFormShown(!isFormShown);
-          if (isFormShown === false) {
-            setFormState({ name: "", lastName: "", birthDate: "" });
-            setEditId(null);
-          }
+          clearForm();
         }}
       />
       {isFormShown && (
