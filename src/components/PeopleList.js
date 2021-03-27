@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import Form from "./Form";
 import validate from "../validation";
+import { toggleFormShow } from "../actions";
 
 const people = [
   { id: 1, name: "Leo", lastName: "DiCaprio", birthDate: "1974-11-11" },
@@ -11,7 +13,6 @@ const people = [
 
 const PeopleList = () => {
   const [peopleState, setPeople] = useState([...people]);
-  const [isFormShown, setIsFormShown] = useState(false);
   const [editId, setEditId] = useState(null);
   const [formState, setFormState] = useState({
     name: "",
@@ -23,6 +24,11 @@ const PeopleList = () => {
   });
 
   let today = new Date().toISOString().slice(5, 10);
+  const dispatch = useDispatch();
+  const isFormShown = useSelector((state) => {
+    const { formShowReducer } = state;
+    return formShowReducer;
+  });
 
   const handleFormStateChange = (key) => (e) => {
     setFormState({ ...formState, [key]: e.target.value, [`${key}Error`]: "" });
@@ -34,11 +40,11 @@ const PeopleList = () => {
 
   const handleEditPerson = (id, name, lastName, birthDate) => {
     setEditId(id);
-    setIsFormShown(true);
+    dispatch(toggleFormShow());
     setFormState({ name, lastName, birthDate });
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = (event) => {
     event.preventDefault();
     const err = validate(formState, setFormState);
     if (!err) {
@@ -60,7 +66,7 @@ const PeopleList = () => {
         lastName: "",
         birthDate: ""
       });
-      setIsFormShown(false);
+      dispatch(toggleFormShow());
     }
   };
 
@@ -111,7 +117,7 @@ const PeopleList = () => {
           )
         }
         handleChange={() => {
-          setIsFormShown(!isFormShown);
+          dispatch(toggleFormShow());
           clearForm();
         }}
       />
