@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import Form from "./Form";
 import validate from "../validation";
-import { toggleFormShow } from "../actions";
+import { toggleFormShow, setEditId, removeEditId } from "../actions";
 
 const people = [
   { id: 1, name: "Leo", lastName: "DiCaprio", birthDate: "1974-11-11" },
@@ -13,7 +13,6 @@ const people = [
 
 const PeopleList = () => {
   const [peopleState, setPeople] = useState([...people]);
-  const [editId, setEditId] = useState(null);
   const [formState, setFormState] = useState({
     name: "",
     nameError: "",
@@ -29,6 +28,7 @@ const PeopleList = () => {
     const { formShowReducer } = state;
     return formShowReducer;
   });
+  const editId = useSelector((state) => state.editIdReducer);
 
   const handleFormStateChange = (key) => (e) => {
     setFormState({ ...formState, [key]: e.target.value, [`${key}Error`]: "" });
@@ -39,7 +39,7 @@ const PeopleList = () => {
   };
 
   const handleEditPerson = (id, name, lastName, birthDate) => {
-    setEditId(id);
+    dispatch(setEditId(id));
     dispatch(toggleFormShow());
     setFormState({ name, lastName, birthDate });
   };
@@ -59,7 +59,7 @@ const PeopleList = () => {
         setPeople(updatedPeopleState);
       } else {
         setPeople([...peopleState, { id: new Date().getTime(), ...formState }]);
-        setEditId(null);
+        dispatch(removeEditId());
       }
       setFormState({
         name: "",
@@ -73,7 +73,7 @@ const PeopleList = () => {
   const clearForm = () => {
     if (isFormShown === false) {
       setFormState({ name: "", lastName: "", birthDate: "" });
-      setEditId(null);
+      dispatch(removeEditId());
     }
   };
 
