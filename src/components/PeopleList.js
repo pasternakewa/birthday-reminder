@@ -40,7 +40,7 @@ const PeopleList = () => {
 
   const handleEditPerson = (id, name, lastName, birthDate) => {
     dispatch(setEditId(id));
-    dispatch(toggleFormShow());
+    dispatch(toggleFormShow(true));
     setFormState({ name, lastName, birthDate });
   };
 
@@ -66,7 +66,7 @@ const PeopleList = () => {
         lastName: "",
         birthDate: ""
       });
-      dispatch(toggleFormShow());
+      dispatch(toggleFormShow(false));
     }
   };
 
@@ -117,7 +117,7 @@ const PeopleList = () => {
           )
         }
         handleChange={() => {
-          dispatch(toggleFormShow());
+          dispatch(toggleFormShow(!isFormShown));
           clearForm();
         }}
       />

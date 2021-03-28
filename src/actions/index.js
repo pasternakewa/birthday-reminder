@@ -1,5 +1,6 @@
-export const toggleFormShow = () => ({
-  type: "TOGGLE_FORM_SHOW"
+export const toggleFormShow = (payload) => ({
+  type: "TOGGLE_FORM_SHOW",
+  payload
 });
 
 export const setEditId = (id) => ({
