@@ -11,3 +11,8 @@ export const setEditId = (id) => ({
 export const removeEditId = () => ({
   type: "REMOVE_EDIT_ID"
 });
+
+export const setPeople = (payload) => ({
+  type: "SET_PEOPLE",
+  payload
+});

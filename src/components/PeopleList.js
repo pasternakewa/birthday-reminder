@@ -3,16 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import Form from "./Form";
 import validate from "../validation";
-import { toggleFormShow, setEditId, removeEditId } from "../actions";
-
-const people = [
-  { id: 1, name: "Leo", lastName: "DiCaprio", birthDate: "1974-11-11" },
-  { id: 2, name: "Demi", lastName: "Moore", birthDate: "1962-11-11" },
-  { id: 3, name: "Calista", lastName: "Flockhart", birthDate: "1964-11-11" }
-];
+import { toggleFormShow, setEditId, removeEditId, setPeople } from "../actions";
 
 const PeopleList = () => {
-  const [peopleState, setPeople] = useState([...people]);
+  // const [peopleState, setPeople] = useState([...people]);
   const [formState, setFormState] = useState({
     name: "",
     nameError: "",
@@ -29,13 +23,14 @@ const PeopleList = () => {
     return formShowReducer;
   });
   const editId = useSelector((state) => state.editIdReducer);
+  const peopleState = useSelector((state) => state.peopleReducer);
 
   const handleFormStateChange = (key) => (e) => {
     setFormState({ ...formState, [key]: e.target.value, [`${key}Error`]: "" });
   };
 
   const handleDeletePerson = (id) => {
-    setPeople(peopleState.filter((person) => person.id !== id));
+    dispatch(setPeople(peopleState.filter((person) => person.id !== id)));
   };
 
   const handleEditPerson = (id, name, lastName, birthDate) => {
@@ -49,16 +44,9 @@ const PeopleList = () => {
     const err = validate(formState, setFormState);
     if (!err) {
       if (editId) {
-        const updatedPeopleState = peopleState.reduce(
-          (acc, curr) => [
-            ...acc,
-            curr.id !== editId ? curr : { ...formState, id: editId }
-          ],
-          []
-        );
-        setPeople(updatedPeopleState);
+        dispatch(setPeople({ editId, formState }));
       } else {
-        setPeople([...peopleState, { id: new Date().getTime(), ...formState }]);
+        dispatch(setPeople({ id: new Date().getTime(), ...formState }));
         dispatch(removeEditId());
       }
       setFormState({
