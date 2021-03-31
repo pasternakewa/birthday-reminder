@@ -12,12 +12,16 @@ const peopleReducer = (state = initialState, action) => {
           ...acc,
           curr.id !== action.payload.editId
             ? curr
-            : { id: action.payload.editId, ...action.payload.formState }
+            : { ...action.payload.formState, id: action.payload.editId }
         ],
-        []
+        [
+          ...(action.payload.id
+            ? [{ ...action.payload.formState, id: action.payload.id }]
+            : {})
+        ]
       );
     case "REMOVE_PERSON":
-      return null;
+      return state.filter((person) => person.id !== action.id);
     default:
       return state;
   }

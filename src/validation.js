@@ -1,4 +1,4 @@
-const validate = (formState, setFormState) => {
+const validate = (formState, dispatch, handleSetFormState) => {
   let isError = false;
   const errors = [];
   const dateRegex = /^(19[2-9][0-9]|20[0-2][0-9])[-/.](0?[1-9]|1[0-2])[-/.](0?[1-9]|[12][0-9]|3[01])$/gim;
@@ -33,7 +33,7 @@ const validate = (formState, setFormState) => {
     errors.birthDateError = "Niepoprawy format daty";
   }
 
-  setFormState({ ...formState, ...errors });
+  dispatch(handleSetFormState({ ...formState, ...errors }));
   return isError;
 };
 

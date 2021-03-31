@@ -11,14 +11,12 @@ const Form = ({ formState, handleConfirm, handleFormStateChange }) => {
         handleChange={handleFormStateChange("name")}
         errorText={formState.nameError}
       />
-
       <Input
         name="Nazwisko"
         value={formState.lastName}
         handleChange={handleFormStateChange("lastName")}
         errorText={formState.lastNameError}
       />
-
       <Input
         name="Data urodzenia"
         value={formState.birthDate}

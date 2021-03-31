@@ -16,3 +16,22 @@ export const setPeople = (payload) => ({
   type: "SET_PEOPLE",
   payload
 });
+
+export const removePerson = (id) => ({
+  type: "REMOVE_PERSON",
+  id
+});
+
+export const handleFormChange = (payload) => ({
+  type: "HANDLE_FORM_CHANGE",
+  payload
+});
+
+export const handleSetFormState = (payload) => ({
+  type: "HANDLE_SET_FORM_STATE",
+  payload
+});
+
+export const clearFormState = () => ({
+  type: "CLEAR_FORM_STATE"
+});

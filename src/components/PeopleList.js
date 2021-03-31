@@ -1,66 +1,61 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import Form from "./Form";
 import validate from "../validation";
-import { toggleFormShow, setEditId, removeEditId, setPeople } from "../actions";
+import {
+  toggleFormShow,
+  setEditId,
+  removeEditId,
+  setPeople,
+  removePerson,
+  handleFormChange,
+  handleSetFormState,
+  clearFormState
+} from "../actions";
+import { getPropFromState } from "../selectors";
 
 const PeopleList = () => {
-  // const [peopleState, setPeople] = useState([...people]);
-  const [formState, setFormState] = useState({
-    name: "",
-    nameError: "",
-    lastName: "",
-    lastNameError: "",
-    birthDate: "",
-    birthDateError: ""
-  });
+  const editId = useSelector(getPropFromState)("editIdReducer");
+  const peopleState = useSelector(getPropFromState)("peopleReducer");
+  const isFormShown = useSelector(getPropFromState)("toggleFormShowReducer");
+  const formState = useSelector(getPropFromState)("formReducer");
+
+  const dispatch = useDispatch();
 
   let today = new Date().toISOString().slice(5, 10);
-  const dispatch = useDispatch();
-  const isFormShown = useSelector((state) => {
-    const { formShowReducer } = state;
-    return formShowReducer;
-  });
-  const editId = useSelector((state) => state.editIdReducer);
-  const peopleState = useSelector((state) => state.peopleReducer);
 
   const handleFormStateChange = (key) => (e) => {
-    setFormState({ ...formState, [key]: e.target.value, [`${key}Error`]: "" });
+    dispatch(handleFormChange({ key, e }));
   };
 
   const handleDeletePerson = (id) => {
-    dispatch(setPeople(peopleState.filter((person) => person.id !== id)));
+    dispatch(removePerson(id));
   };
 
   const handleEditPerson = (id, name, lastName, birthDate) => {
     dispatch(setEditId(id));
     dispatch(toggleFormShow(true));
-    setFormState({ name, lastName, birthDate });
+    dispatch(handleSetFormState({ name, lastName, birthDate }));
   };
 
   const handleConfirm = (event) => {
     event.preventDefault();
-    const err = validate(formState, setFormState);
+    const err = validate(formState, dispatch, handleSetFormState);
     if (!err) {
       if (editId) {
         dispatch(setPeople({ editId, formState }));
       } else {
-        dispatch(setPeople({ id: new Date().getTime(), ...formState }));
-        dispatch(removeEditId());
+        dispatch(setPeople({ id: new Date().getTime(), formState }));
       }
-      setFormState({
-        name: "",
-        lastName: "",
-        birthDate: ""
-      });
+      dispatch(clearFormState());
       dispatch(toggleFormShow(false));
     }
   };
 
   const clearForm = () => {
     if (isFormShown === false) {
-      setFormState({ name: "", lastName: "", birthDate: "" });
+      dispatch(clearFormState());
       dispatch(removeEditId());
     }
   };

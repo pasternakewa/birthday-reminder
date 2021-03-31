@@ -1,12 +1,14 @@
 import editIdReducer from "./editIdReducer";
-import formShowReducer from "./formShowReducer";
+import toggleFormShowReducer from "./toggleFormShowReducer";
 import peopleReducer from "./peopleReducer";
+import formReducer from "./formReducer";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
   editIdReducer,
-  formShowReducer,
-  peopleReducer
+  toggleFormShowReducer,
+  peopleReducer,
+  formReducer
 });
 
 export default rootReducer;
