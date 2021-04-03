@@ -7,19 +7,22 @@ const initialState = [
 const peopleReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_PEOPLE":
-      return state.reduce(
-        (acc, curr) => [
-          ...acc,
-          curr.id !== action.payload.editId
-            ? curr
-            : { ...action.payload.formState, id: action.payload.editId }
-        ],
-        [
-          ...(action.payload.id
-            ? [{ ...action.payload.formState, id: action.payload.id }]
-            : {})
-        ]
-      );
+      if (action.payload.editId) {
+        return state.reduce(
+          (acc, curr) => [
+            ...acc,
+            curr.id !== action.payload.editId
+              ? curr
+              : { ...action.payload.formState, id: action.payload.editId }
+          ],
+          []
+        );
+      } else {
+        return [
+          ...state,
+          { id: action.payload.id, ...action.payload.formState }
+        ];
+      }
     case "REMOVE_PERSON":
       return state.filter((person) => person.id !== action.id);
     default:
